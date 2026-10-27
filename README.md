@@ -36,7 +36,8 @@ npm run dev
 
 The frontend expects the API at `http://localhost:8000`. Configure
 `CORS_ORIGINS` for the frontend's exact browser origin when using a non-default
-host or port. See `.env.example` for the local configuration names.
+host or port. Copy `.env.example` to `.env` to customize the API base URL,
+request timeout, CORS origin, or the provisional `10:00` local decision cutoff.
 
 ## Checks
 
@@ -54,7 +55,13 @@ npm run build
 ```
 
 The API health endpoint is `GET /api/health`; FastAPI's OpenAPI page is
-available at `/docs` while the backend is running.
+available at `/docs` while the backend is running. Analysis routes are
+`GET /api/metadata`, `/api/forecasts`, `/api/actuals`, and `/api/accuracy`.
+Forecast and accuracy routes accept `decision_date_from` and
+`decision_date_to`; actuals accept `delivery_date_from` and
+`delivery_date_to`. Forecast and accuracy routes accept January 2026 decision
+dates; actuals cover January delivery dates and 2026-02-01 for the final
+January decision date.
 
 ## Docker
 
